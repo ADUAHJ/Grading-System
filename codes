@@ -1,0 +1,42 @@
+import 'dart:io';
+
+
+String prompt(String message) {
+  stdout.write(message);
+  return stdin.readLineSync()!;
+}
+
+void main() {
+  print('Dr. Asante\'s Grade Calculator');
+
+  int numStudents = int.parse(prompt('Enter the number of students: '));
+
+  for (int i = 1; i <= numStudents; i++) {
+    print('\nStudent $i Details');
+
+    String name = prompt('Enter Student Name: ');
+    double ca = double.parse(prompt('Enter Continuous Assessment Score (out of 20): '));
+    double exam = double.parse(prompt('Enter Exam Score (out of 60): '));
+    double project = double.parse(prompt('Enter Project Score (out of 20): '));
+
+    double total = ca + exam + project;
+    String grade = assignGrade(total);
+
+    print('\nSummary for $name:');
+    print('Total Score: $total');
+    print('Final Grade: $grade');
+  }
+}
+
+// Grade assignment function
+String assignGrade(double score) {
+  if (score >= 80) return 'A';
+  else if (score >= 75) return 'B+';
+  else if (score >= 70) return 'B';
+  else if (score >= 65) return 'C+';
+  else if (score >= 60) return 'C';
+  else if (score >= 55) return 'D+';
+  else if (score >= 50) return 'D';
+  else if (score >= 45) return 'E';
+  else return 'F';
+}
